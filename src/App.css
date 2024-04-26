@@ -1,4 +1,8 @@
 /* App.css */
+body {
+  font-family: 'Andale Mono', monospace;
+}
+
 .header {
   background-image: url('./headerimg.png');
   background-size: cover; 
@@ -140,7 +144,6 @@
   justify-content: center;
   align-items: center;
 }
-
 .popup-content {
   background-color: #fff;
   padding: 20px;
@@ -165,20 +168,16 @@
   display: flex;
   align-items: center;
 }
-
 .thumbnail-info img {
-  max-width: 150px; /* Adjust as needed */
-  margin-right: 20px; /* Adjust spacing between image and text */
+  max-width: 150px; 
+  margin-right: 20px; 
 }
-
 .text-info {
   flex: 1;
 }
-
 .text-info h2 {
   margin-top: 0;
 }
-
 .text-info p {
   margin-bottom: 0;
 }
@@ -187,7 +186,6 @@
   margin-top: 20px; /* Adjust spacing between text content and video */
   text-align: center; /* Center the iframe */
 }
-
 .video-section iframe {
   max-width: 100%; /* Adjust as needed */
   border: none;

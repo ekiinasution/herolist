@@ -14,7 +14,6 @@ const App = () => {
     // Fetch
     axios.get('https://staging.ina17.com/data.json')
       .then(response => {
-        // Sort the data array by displayName in ascending order
         const sortedData = response.data.sort((a, b) => a.displayName.localeCompare(b.displayName));
         const groupedByRole = {};
         sortedData.forEach(item => {
@@ -24,7 +23,7 @@ const App = () => {
           groupedByRole[item.role].push(item);
         });
         groupedByRole['All'] = sortedData;
-        // Update state with sorted data
+        
         setThumbnails(sortedData);
         setNavbarItems(groupedByRole);
       })
@@ -55,7 +54,7 @@ const App = () => {
     console.log('Search query:', searchQuery);
   };
   const handleNavbarItemClick = (role) => {
-    setSelectedRole(role === 'All' ? null : role); // Set selected role to null when "All" is clicked
+    setSelectedRole(role === 'All' ? null : role);
     setSearchQuery('');
   };
   const filteredThumbnails = selectedRole ?
@@ -89,7 +88,7 @@ const App = () => {
           value={searchQuery}
           onChange={handleSearchInputChange}
         />
-        <button onClick={handleSearch}>Search</button> {/* Search button */}
+        <button onClick={handleSearch}>Search</button>
       </div>
       <div className="total-hero">Total Hero: {filteredThumbnails.length}</div>
 
