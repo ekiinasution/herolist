@@ -52,6 +52,9 @@ body {
   display: flex;
   justify-content: center; 
 }
+.navbar-nav.active {
+  background-color: rgb(223, 19, 19) !important;
+}
 .navbar-nav li {
   margin: 0 10px; 
 }
@@ -98,7 +101,7 @@ body {
   max-width: 1200px;
   height: 100%;
   max-height: 200px;
-  margin: 0 auto;
+  margin: 0 auto 100px auto;
   padding: 8% 8% 8% 8%;
 }
 .thumbnail {
@@ -116,10 +119,17 @@ body {
   height: 800px; 
   object-fit: cover; 
   object-position: 50% 0;
-}.outside-h3 {
-  position: relative;
-  text-align: center; 
+  transition: transform 0.1s ease; 
 }
+.thumbnail:hover img {
+  transform: scale(1.2); 
+  transition: transform 0.3s ease; 
+}
+
+/* .thumbnail:hover img {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+} */
 .display-name {
   position: absolute;
   bottom: 0;
@@ -132,6 +142,55 @@ body {
   color: rgb(255, 255, 255);
   font-size: 18px;
 }
+
+.circle-icon {
+  width: 50px;
+  height: 50px; 
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 5px;
+  background-color: rgba(0, 0, 0, 0.565);
+}
+
+.circle-icon.active {
+  background-color: rgb(223, 19, 19) !important;
+}
+.circle-icon:hover {
+  background-color: red;
+}
+.ability-details {
+  margin-top: 20px; 
+}
+
+.abilities {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px; 
+}
+
+.ability {
+  margin-right: 10px;
+}
+
+.ability-details {
+  margin-top: 20px;
+}
+
+
+
+/* .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer; 
+}
+.thumbnail-info {
+  display: flex;
+  align-items: center;
+}
+.text-info {
+  margin-left: 20px; 
+} */
 
 .popup-detail {
   position: fixed;
@@ -147,6 +206,7 @@ body {
 .popup-content {
   background-color: #fff;
   padding: 20px;
+  margin: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   position: relative;
@@ -183,10 +243,10 @@ body {
 }
 
 .video-section {
-  margin-top: 20px; /* Adjust spacing between text content and video */
-  text-align: center; /* Center the iframe */
+  margin-top: 20px; 
+  text-align: center; 
 }
 .video-section iframe {
-  max-width: 100%; /* Adjust as needed */
+  max-width: 100%;
   border: none;
 }

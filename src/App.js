@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './App.css';
+import YouTube from 'react-youtube'; 
 
 const App = () => {
   const [thumbnails, setThumbnails] = useState([]);
@@ -8,6 +9,7 @@ const App = () => {
   const [navbarItems, setNavbarItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState(''); 
   const [selectedRole, setSelectedRole] = useState(null);
+  const [activeAbility, setActiveAbility] = useState(null); 
   const popupRef = useRef(null);
 
   useEffect(() => {
@@ -46,7 +48,9 @@ const App = () => {
   const handleClosePopup = () => {
     setSelectedThumbnail(null);
   };
-  
+  const handleAbilityClick = (ability) => {
+    setActiveAbility(ability === activeAbility ? null : ability);
+  };
   const handleSearchInputChange = (event) => {
     setSearchQuery(event.target.value);
   };
@@ -101,7 +105,6 @@ const App = () => {
         ))}
       </div>
 
-      
       {selectedThumbnail && (
         <div className="popup-detail">
           <div className="popup-content" ref={popupRef}>
@@ -114,16 +117,21 @@ const App = () => {
                 <p>{selectedThumbnail.description}</p>
               </div>
             </div>
+            <div className="abilities">
+              {selectedThumbnail.abilities.map((ability, index) => (
+                <div key={index} className={`ability ${activeAbility === ability ? 'active' : ''}`} onClick={() => handleAbilityClick(ability)}>
+                  <img src={ability.displayIcon} alt={ability.displayName} className="circle-icon"/>
+                </div>
+              ))}
+            </div>
+            {activeAbility && (
+              <div className="ability-details">
+                <h3>{activeAbility.displayName}</h3>
+                <p>{activeAbility.description}</p>
+              </div>
+            )}
             <div className="video-section">
-              <iframe
-                width="500"
-                height="200"
-                src={`https://www.youtube.com/embed/${selectedThumbnail.video}`}
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
+              <YouTube videoId={selectedThumbnail.video} />
             </div>
           </div>
         </div>
